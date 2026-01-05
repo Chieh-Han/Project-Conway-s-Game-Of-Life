@@ -163,15 +163,7 @@ public:
     }
 };
 
-// 确保文件最顶部有这两个头文件，如果没有请加上：
-// #include <thread>
-// #include <chrono>
 
-// ... (上面 Grid 和 Simulation 类的代码保持不变) ...
-
-// ==========================================
-// 3. Workflow 类：负责用户交互
-// ==========================================
 class Workflow {
 private:
     Simulation sim;
@@ -213,7 +205,7 @@ public:
             if (steps <= 0) break;
 
             for (int t = 0; t < steps; t++) {
-                // 如果是 Windows 出现乱码，可以用 system("cls");
+                
                 cout << "\033[2J\033[1;1H"; 
                 
                 sim.update(); 
@@ -221,7 +213,7 @@ public:
                 cout << "Iteration: " << t + 1 << endl;
                 sim.getGrid().print(); 
                 
-                Sleep(200);  // 注意：S 必须大写！
+                Sleep(200);  
             }
             
             cout << "Paused. Continue?" << endl;
