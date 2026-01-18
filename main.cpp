@@ -4,9 +4,7 @@
 #include <fstream>
 #include <thread>
 #include <chrono>
-#include <cstdlib>
-#include <ctime>
-#include <windows.h>
+#include <ctime> 
 
 using namespace std;
 
@@ -40,20 +38,40 @@ public:
 
         cells.clear();
         string line;
+        int expectedWidth = -1;
+
         while (getline(myfile, line)) {
-            if (line.empty()) continue;
+            if (line.empty()) continue; // Skip empty rows
+
             vector<bool> row;
             for (char c : line) {
-                row.push_back(c == 'x' || c == 'X' || c == '1'); 
+                // Only process valid characters, ignore hidden \r or spaces
+                if (c == 'x' || c == 'X' || c == '1' || c == '.') {
+                    row.push_back(c == 'x' || c == 'X' || c == '1'); 
+                }
             }
-            cells.push_back(row);
+
+            // Check if grid has consistent row size
+            if (expectedWidth == -1) {
+                expectedWidth = row.size(); // Set the standard width from the first row
+            } 
+            else if (row.size() != expectedWidth) {
+                cerr << "Error: Grid is uneven! Row " << cells.size() + 1 
+                    << " has " << row.size() << " cells, expected " << expectedWidth << "." << endl;
+                return false; 
+            }
+
+            cells.push_back(row); // Add the validated row to our cells vector
         }
+
         myfile.close();
-        
+
+        // Final check to update class members if loading was successful
         if (!cells.empty()) {
             height = cells.size();
-            width = cells[0].size();
+            width = expectedWidth;
         }
+        
         return true;
     }
 
@@ -172,12 +190,21 @@ public:
     void run() {
         Grid myGrid;
         int choice;
-
         cout << "Welcome to Game of Life (Sprint 2)" << endl;
-        cout << "1. Load from file (grid.txt)" << endl;
-        cout << "2. Generate random grid" << endl;
-        cout << "Enter choice: ";
-        cin >> choice;
+        while(true){
+            cout << "1. Load from file (grid.txt)" << endl;
+            cout << "2. Generate random grid" << endl;
+            cout << "Enter choice: ";
+            if (cin >> choice && (choice == 1 || choice == 2)) {
+                break; //break out of loop if inputs are correct
+            }
+
+            else {
+                cout << "Invalid input. Please enter 1 or 2." << endl;
+                cin.clear(); // Reset error flags
+                cin.ignore(1000, '\n'); // Clear the buffer
+            }   
+        }
 
         if (choice == 1) {
             string filename;
@@ -189,8 +216,17 @@ public:
             }
         } else {
             int w, h;
-            cout << "Enter width and height: ";
-            cin >> w >> h;
+            while(true){
+                cout << "Enter width AND height: ";
+                if (cin >> w >> h && w > 0 && h > 0) {
+                    break;
+                }
+                else {
+                    cerr << "Error: Dimensions must be positive integers!" << endl;
+                    cin.clear(); 
+                    cin.ignore(1000, '\n');
+                }
+            }
             myGrid.generateRandom(w, h);
         }
 
@@ -213,7 +249,7 @@ public:
                 cout << "Iteration: " << t + 1 << endl;
                 sim.getGrid().print(); 
                 
-                Sleep(200);  
+                this_thread::sleep_for(chrono::milliseconds(1000));
             }
             
             cout << "Paused. Continue?" << endl;
