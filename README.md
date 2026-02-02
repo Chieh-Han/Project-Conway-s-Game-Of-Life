@@ -30,7 +30,34 @@ This is the third iteration (Sprint 3) of the Conway's Game of Life project. Thi
 ├── README.md            # Documentation
 └── src/
     ├── main.cpp         # Main execution loop
-    ├── Grid.h           # Grid class definition (Sparse implementation)
-    └── Grid.cpp         # Grid class implementation
+    ├── Grid.h           # Grid class definition 
+    ├── Grid.cpp         # Grid class implementation
+    ├── Workflow.h       # Workflow class definition
+    └── Workflow.cpp     # Workflow class implementation
+
+## Build & Run Instructions
+
+# 1. Create and enter a build directory
+mkdir build && cd build
+
+# 2. Configure and build the project
+cmake ..
+make
+
+# 3. Go back to the project root
+cd ..
+
+# 4. Run the simulation from the root
+./build/game_of_life
+
+# 4.1 Load some .txt files from the samples folder to see some common simulation 
+
+# 5. Run the included python script to create a gif for cisualization
+# Note: Requires PIL library (pip install Pillow) 
+python3 visualizer.py
+
+# 6. (Optional) Open the GIF directly from WSL in Windows
+explorer.exe simulation.gif
+
 Authors
 Group 55
