@@ -24,26 +24,26 @@ This is the third iteration (Sprint 3) of the Conway's Game of Life project. Thi
 
 ### Build & Run Instructions
 
-# 1. Create and enter a build directory
+### 1. Create and enter a build directory
 `mkdir build && cd build`
 
-# 2. Configure and build the project
+### 2. Configure and build the project
 `cmake ..`
 `make`
 
-# 3. Go back to the project root
+### 3. Go back to the project root
 `cd ..`
 
-# 4. Run the simulation from the root
+### 4. Run the simulation from the root
 `./build/game_of_life`
 
-# 4.1 Load some .txt files from the samples folder to see some common simulation 
+### 4.1 Load some .txt files from the samples folder to see some common simulation 
 
-# 5. Run the included python script to create a gif for cisualization
-Note: Requires PIL library (pip install Pillow) 
+### 5. Run the included python script to create a gif for cisualization
+Note: Requires PIL library (`pip install Pillow`)  
 `python3 visualizer.py`
 
-# 6. (Optional) Open the GIF directly from WSL in Windows
+### 6. (Optional) Open the GIF directly from WSL in Windows
 `explorer.exe simulation.gif`
 
 ## Project Structure
