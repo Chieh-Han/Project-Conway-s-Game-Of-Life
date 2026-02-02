@@ -28,7 +28,7 @@ This is the third iteration (Sprint 3) of the Conway's Game of Life project. Thi
 `mkdir build && cd build`
 
 ### 2. Configure and build the project
-`cmake ..`
+`cmake ..`  
 `make`
 
 ### 3. Go back to the project root
