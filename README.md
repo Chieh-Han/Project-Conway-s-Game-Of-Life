@@ -1,8 +1,41 @@
-# Conway's Game of Life - Sprint 3
+<h1 align="center">
+  Conway's Game of Life - Sprint 3 (Final)
+  <br>
+</h1>
 
+<div align="center">
+  <img src="./simulation.gif" alt="Game of Life Simulation" />
+  <br>
+  Game of Life Simulation
+</div> 
+
+# Table of Contents
+* [Introduction](#introduction)
+* [Background](#background)
+* [Improvements](#improvements-in-sprint-3)
+* [Build Instructions](#build--run-instructions)
+* [Project Structure](#project-structure)
+
+## Introduction
 This is the third iteration (Sprint 3) of the Conway's Game of Life project. This version focuses on **performance optimization**, **memory efficiency**, and **professional build management**.
 
-## Key Improvements in Sprint 3
+## Background
+We consider an arbitrary grid of squares. Each component of the grid is called a (biological) cell. At the beginning (`t=0`), all
+cells are either "dead" or "alive".
+Now we are going to add dynamics to the scene by applying the following rules at any time step `t = t + 1`:    
+
+A living cell   
+
+* stays alive, if it hast exact 2 or 3 neighbors
+* dies due to loneliness if it has fewer neighbors
+* dies du to overpopulation if it has more neighbors
+
+A dead cell  
+
+* will be reborn if it has exactly 3 neighbors
+* remains dead otherwise
+
+## Improvements in Sprint 3
 
 ### 1. Sparse Representation (Infinite Grid)
 - **Problem in Sprint 2:** The previous version used a 2D vector (`vector<vector<bool>>`). This required resizing the entire grid in memory whenever a cell moved out of bounds, which was inefficient for large, empty spaces.
@@ -22,7 +55,7 @@ This is the third iteration (Sprint 3) of the Conway's Game of Life project. Thi
 - The project has been migrated to use **CMake**, a standard industry tool for C++ build automation.
 - Source code is organized into a clean structure (`src/` folder).
 
-### Build & Run Instructions
+## Build & Run Instructions
 
 ### 1. Create and enter a build directory
 `mkdir build && cd build`
@@ -60,5 +93,4 @@ Note: Requires PIL library (`pip install Pillow`)
     └── Workflow.cpp     # Workflow class implementation
 ```
 
-Authors:
-Group 55
+Authors: Group 55

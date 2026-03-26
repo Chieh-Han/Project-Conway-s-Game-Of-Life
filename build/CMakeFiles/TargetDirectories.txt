@@ -1,0 +1,3 @@
+/home/jhieh/advanced_programming/GoL/build/CMakeFiles/game_of_life.dir
+/home/jhieh/advanced_programming/GoL/build/CMakeFiles/edit_cache.dir
+/home/jhieh/advanced_programming/GoL/build/CMakeFiles/rebuild_cache.dir
