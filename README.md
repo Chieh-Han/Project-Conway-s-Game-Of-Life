@@ -24,13 +24,13 @@ We consider an arbitrary grid of squares. Each component of the grid is called a
 cells are either "dead" or "alive".
 Now we are going to add dynamics to the scene by applying the following rules at any time step `t = t + 1`:    
 
-A living cell   
+A living cell:  
 
 * stays alive, if it hast exact 2 or 3 neighbors
 * dies due to loneliness if it has fewer neighbors
-* dies du to overpopulation if it has more neighbors
+* dies due to overpopulation if it has more neighbors
 
-A dead cell  
+A dead cell: 
 
 * will be reborn if it has exactly 3 neighbors
 * remains dead otherwise
